@@ -19,9 +19,9 @@ To get exchange parameters one should
   ```sh
   mamba install triqs
   ```
-  *numpy
-  *matplotlib
-  *tqdm
+*numpy
+*matplotlib
+*tqdm
 
 
 Tool to help extract exchange integrals from DFT 
@@ -29,6 +29,7 @@ Tool to help extract exchange integrals from DFT
 ## Contact
 
 Egor Agapov -  agapov.em@phystech.edu
+
 Project Link: [https://github.com/EgorcaA/exchanges_DFT](https://github.com/EgorcaA/exchanges_DFT)
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
