@@ -24,7 +24,6 @@ To get exchange parameters one should
 * tqdm
 
 
-Tool to help extract exchange integrals from DFT 
 <!-- CONTACT -->
 ## Contact
 
