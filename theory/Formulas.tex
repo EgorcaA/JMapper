@@ -1,0 +1,164 @@
+\documentclass[12pt,a4paper]{article}
+\input{preambule}
+\graphicspath{{./pics/}}
+\begin{document}
+
+
+\begin{center}
+    \LARGE \textsc{formulas}
+\end{center}
+
+\hrule
+
+\phantom{42}
+
+\begin{flushright}
+    \begin{tabular}{rr}
+    % written by:
+        \textbf{Authors}: 
+        & EA AK\\
+    % date:
+        \textbf{From}: &
+        \textit{\today}\\
+    \end{tabular}
+\end{flushright}
+
+\thispagestyle{empty}
+
+
+\section{Theory}
+The exchange interactions in DFT were estimated by magnetic force theorem (MFT)  approach \cite{korotin_calculation_2015,liechtenstein_local_1987} using electron Green's functions, 
+calculated in Wannier basis 
+%consisting of d states of Cr and p states of Te 
+\begin{equation}
+    G_{rr', \sigma}^{m m^{\prime}}(\mathbf{k},i \nu_n)=\left[(i \nu_n + \mu)I-H^{rm, r'm^{\prime}}_{\mathbf{k},\sigma}\right]_{rm,r'm'}^{-1}
+\end{equation} 
+where $I$ is the identity matrix,
+ $H^{rm, r'm^{\prime}}_{\mathbf{k},\sigma}$ is the Wannier Hamiltonian, 
+\[
+    H^{rm, r'm^{\prime}}_{\mathbf{k},\sigma} =\left\langle\psi_{\mathbf{k} \sigma rm}^{\mathrm{W}}|H| \psi_{\mathbf{k} \sigma r'm^{\prime}}^{\mathrm{W}}\right\rangle=
+    \sum_{\mathbf{R}} e^{i \mathbf{k} \cdot \mathbf{R}}\langle\mathbf{0} \sigma rm |H| \mathbf{R} \sigma r'm^{\prime}\rangle
+\]
+and the inversion is performed in the site- and orbital space. 
+To obtain $H^{rm, r'm^{\prime}}_{\mathbf{k},\sigma}$ wannier transformation was performed on both spin components separately 
+relying on that $| \mathbf{R} \sigma rm\rangle $ would be independent on spin $| \mathbf{R} rm\rangle$ so that we would have common basis for both components. 
+%where $ r, r'$ numerates atoms in the unit cell, 
+
+\begin{equation}
+    \label{JqDFT}
+    J^{rr'}_{\mathbf{q}}=  -\frac{2T}{{\mathfrak m}_r{\mathfrak m}_{r'}}  \sum_{{\mathbf k},i \nu_n}\operatorname{Tr}
+    \left[\Delta_{ r} \tilde{G}_{ rr',\downarrow}({\mathbf k}+ {\mathbf q},i \nu_n)\right. \times \left.\Delta_{r'} \tilde{G}_{r'r,\uparrow}({\mathbf k},i \nu_n) \right]
+\end{equation}
+
+where $\Delta_{r}^{m m^{\prime}} = \sum_{\mathbf k}(H_{\mathbf{k},\uparrow }^{rm, rm^{\prime}}-H_{\mathbf{k},\downarrow}^{rm, rm^{\prime}})$ is spin splitting 
+and $\tilde{G}^{mm'}_{ rr',\sigma}({\bf k},i \nu_n)={G}^{mm'}_{ rr',\sigma}({\bf k},i \nu_n)-
+%{G}^{mm'}_{{\rm loc},r,\sigma}(i \nu_n)$,
+%J_{\text{self}}$ is self exchange that can be found as $J_{\text{self}} = -\frac{T}{4}  \sum_{i \nu_n} \operatorname{Tr} \left[\Delta_{ i i} G_{\text{loc}, \downarrow}(i \nu_n) \Delta_{i i} G_{\text{loc}, \uparrow}(i \nu_n) \right]$ 
+%$G_{\text{loc},r,\sigma}^{mm'} (i\nu_n)= 
+\sum_{{\mathbf k}'} G_{rr, \sigma }^{m m^{\prime}}(\mathbf{k}',i \nu_n)$, the trace is taken over orbital indexes, and $\mathfrak{m}_r$ is the magnetic moment at the $r$-th atom (in units of Bohr magneton $\mu_B$). 
+Equivalently we calculate 
+\begin{equation}
+    J^{rr'}_{\mathbf{q}}=  -\frac{2T}{{\mathfrak m}_r{\mathfrak m}_{r'}}  \sum_{{\mathbf k},i \nu_n}\operatorname{Tr}
+    \left[\Delta_{ r} G_{ rr',\downarrow}({\mathbf k}+ {\mathbf q},i \nu_n)\right. \times \left.\Delta_{r'} G_{r'r,\uparrow}({\mathbf k},i \nu_n) \right] - J_{\text{self}} \delta_{rr'}
+\end{equation}
+where $J_{\text{self}}$ is self exchange that can be found as $J_{\text{self}} = -\frac{2T}{{\mathfrak m}_r{\mathfrak m}_{r'}}  \sum_{{\mathbf k},i \nu_n}\operatorname{Tr}
+\left[\Delta_{ r} G_{ \text{loc},\downarrow}(i \nu_n)\right. \times \left.\Delta_{r'} G_{\text{loc},\uparrow}(i \nu_n) \right]$ 
+with $G_{\text{loc}, \sigma} = \frac{1}{V_{BZ}} \int_{B Z} G_{i i, \sigma }^{m m^{\prime}}(i \nu_n, \mathbf{k})  d \mathbf{k}$.
+
+
+
+% Nearest neighbours interaction can be found similarly as 
+% \begin{align}
+%    J_{i j}(\mathbf{R}_{l})  = -\frac{T}{4}  \sum_{i \nu_n}\notag\\ \times\operatorname{Tr}
+%    \left[\Delta_{ i i} G_{i j, \downarrow}(i \nu_n, \mathbf{R}_{l}) \Delta_{j j} G_{j i, \uparrow}(i \nu_n, -\mathbf{R}_{l}) \right]
+% \end{align}
+% where $G_{i j, \sigma}(i \nu_n, \mathbf{R}_{l})$ is Fourier image from $G_{i j, \sigma}^{m m^{\prime}}(i \nu_n, \mathbf{k})$. 
+
+
+\subsection{1 atom per cell} % (fold)
+\label{sub:1}
+In case of one magnetic atom in unit cell we calculate 
+$    G_{0 j, \sigma}^{m m^{\prime}}(i \nu_n)= \frac{1}{V_{BZ}} \int_{B Z} G_{\sigma}^{m m^{\prime}}(i \nu_n, \mathbf{k}) e^{2 \pi i \mathbf{k} \mathbf{R}_{j}} d \mathbf{k}$ 
+and $G_{ j 0, \sigma}^{m m^{\prime}}(i \nu_n)= \frac{1}{V_{BZ}} \int_{B Z} G_{\sigma}^{m m^{\prime}}(i \nu_n, \mathbf{k}) e^{-2 \pi i \mathbf{k} \mathbf{R}_{j}} d \mathbf{k}$
+where $k$ is in range $[0, 1] \otimes [0, 1]$ and $\mathbf{R}_j$ is integer vector, $\Delta^{m m^{\prime}} = \frac{1}{V_{BZ}} \int_{B Z}\left(H_{ \uparrow}^{m m^{\prime}}(\mathbf{k})-H_{ \downarrow}^{m m^{\prime}}(\mathbf{k})\right) d \mathbf{k}$
+
+% \[
+%     J_{0 j}= -\frac{2T}{{\mathfrak m} {\mathfrak m}}  \sum_{i \nu_n} \sum_{\substack{m m^{\prime} \\ m^{\prime \prime} m^{\prime \prime \prime}}} 
+%     \left(\Delta^{m m^{\prime}}  G_{0 j, \downarrow}^{m^{\prime} m^{\prime \prime}} (i \nu_n)  \Delta^{m^{\prime \prime} m^{\prime \prime \prime}}   G_{j 0, \uparrow}^{m^{\prime \prime \prime} m} (i \nu_n) \right) =
+%     -\frac{2T}{{\mathfrak m} {\mathfrak m}}   \sum_{i \nu_n} \operatorname{Tr}
+%     \left[\Delta G_{0 j, \downarrow}(i \nu_n) \Delta G_{j 0, \uparrow}(i \nu_n) \right]
+% \]
+\begin{multline*}
+    J_{0 j}= -\frac{2T}{{\mathfrak m} {\mathfrak m}}  \sum_{i \nu_n} \sum_{\substack{m m^{\prime} \\ m^{\prime \prime} m^{\prime \prime \prime}}} 
+    \left(\Delta^{m m^{\prime}}  G_{0 j, \downarrow}^{m^{\prime} m^{\prime \prime}} (i \nu_n)  \Delta^{m^{\prime \prime} m^{\prime \prime \prime}}   G_{j 0, \uparrow}^{m^{\prime \prime \prime} m} (i \nu_n) \right) =\\
+    -\frac{2T}{{\mathfrak m} {\mathfrak m}}   \sum_{i \nu_n} \operatorname{Tr}
+    \left[\Delta G_{0 j, \downarrow}(i \nu_n) \Delta G_{j 0, \uparrow}(i \nu_n) \right]
+\end{multline*}
+
+\begin{multline*}
+    J_{q}=-\frac{2T}{{\mathfrak m}^2  V_{BZ}}  \sum_{i \nu_n} \int_{1 BZ} \diff k \sum_{\substack{m m^{\prime} \\ m^{\prime \prime} m^{\prime \prime \prime}}}  
+    \left(\Delta^{m m^{\prime}}  G_{k + q, \downarrow}^{m^{\prime} m^{\prime \prime}} (i \nu_n)  \Delta^{m^{\prime \prime} m^{\prime \prime \prime}}   G_{k, \uparrow}^{m^{\prime \prime \prime} m} (i \nu_n) \right) = \\
+    -\frac{2T}{{\mathfrak m}^2  V_{BZ}}  \sum_{i \nu_n}  \int_{1 BZ} \diff k \operatorname{Tr}
+    \left[\Delta G_{k+ q, \downarrow}(i \nu_n) \Delta G_{k, \uparrow}(i \nu_n) \right]
+\end{multline*}
+
+
+\begin{tcolorbox}
+\textbf{Tips to check}
+    \begin{multline*}
+        G_{0 j, \sigma}^{m m^{\prime}}( - i \omega_n)^{\dagger} = \frac{1}{V_{BZ}} \int_{B Z} G_{\sigma}^{m m^{\prime}}(- i \omega_n, \mathbf{k})^{\dagger} e^{- 2 \pi i \mathbf{k} \mathbf{R}_{j}} d \mathbf{k} = \\
+        \frac{1}{V_{BZ}} \int_{B Z} G_{\sigma}^{m m^{\prime}}( i \omega_n, \mathbf{k}) e^{- 2 \pi i \mathbf{k} \mathbf{R}_{j}} d \mathbf{k} = G_{j 0, \sigma}^{m m^{\prime}}(  i \omega_n)
+    \end{multline*}
+
+    \[
+    0 = \int \diff q J_{q}
+    \]
+
+\end{tcolorbox}
+
+Magnon dispersion in Heisenberg model
+\[
+    E(\mathbf{q})=\frac{4 \mu_B}{{\mathfrak m}}[J(\mathbf{0})-J(\mathbf{q})]
+\]
+
+
+
+\subsection{2 atoms per cell} % (fold)
+\label{sub:1}
+In case of 2 (magnetic) atoms in unit cell we add indices $ i, j$ that number these atoms
+\[
+    G_{i j, \sigma}^{m m^{\prime}}(i \nu_n, \mathbf{k})=\left(i \nu_n + E_F-H_{m m^{\prime}, i j, \sigma}^{W F}(\mathbf{k})\right)^{-1}
+\]
+\begin{align*}
+    G_{0 0, \sigma}^{m m^{\prime}}(i \nu_n, \mathbf{R}_{l}) &= \frac{1}{V_{BZ}} \int_{B Z} G_{\sigma 0 0}^{m m^{\prime}}(i \nu_n, \mathbf{k}) e^{2 \pi i \mathbf{k} \mathbf{R}_{l}} d \mathbf{k}\\
+    G_{0 1, \sigma}^{m m^{\prime}}(i \nu_n, \mathbf{R}_{l}) &= \frac{1}{V_{BZ}} \int_{B Z} G_{\sigma 0 1}^{m m^{\prime}}(i \nu_n, \mathbf{k}) e^{2 \pi i \mathbf{k} \mathbf{R}_{l}} d \mathbf{k} 
+\end{align*}
+where $\mathbf{R}_{l}$ is translation vector (in our case both atoms are in G so $\mathbf{R}_{l}$ is integer vector)
+\begin{equation}
+    \Delta_{i i}^{m m^{\prime}} = \frac{1}{V_{BZ}} \int_{B Z}\left(H_{ \uparrow i i}^{m m^{\prime}}(\mathbf{k})-H_{ \downarrow i i}^{m m^{\prime}}(\mathbf{k})\right) d \mathbf{k} .
+\end{equation}
+
+\begin{equation}
+    J_{i j}(\mathbf{R}_{l})  = \frac{T}{4}  \sum_{i \nu_n} \operatorname{Tr}
+    \left[\Delta_{ i i} G_{i j, \downarrow}(i \nu_n, \mathbf{R}_{l}) \Delta_{j j} G_{j i, \uparrow}(i \nu_n, -\mathbf{R}_{l}) \right]
+\end{equation}
+\begin{equation}
+    J_{i j} (q) =  \frac{T}{4 V_{BZ}}  \sum_{i \nu_n}  \int_{1 BZ} \diff k \operatorname{Tr}
+    \left[\Delta_{ i i} G_{ i j, \downarrow}(i \nu_n, k+ q) \Delta_{j j} G_{j i, \uparrow}(i \nu_n, k) \right]
+\end{equation}
+from $J_{i j} (\mathbf{q})$ we can also get $J_{i j}(\mathbf{R}_{l})$ via 
+\begin{equation}
+    J_{i j}(\mathbf{R}_{l}) = \frac{1}{V_{BZ}} \int_{B Z} J_{i j} (\mathbf{q}) e^{2 \pi i \mathbf{q} \mathbf{R}_{l}} d \mathbf{q}
+\end{equation}
+
+
+
+
+% \nocite{*}
+
+\bibliographystyle{ieeetr}
+\bibliography{bibl.bib}
+
+
+
+\end{document}

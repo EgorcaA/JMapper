@@ -1,0 +1,58 @@
+% add (renew) commands
+
+\usepackage[margin=1.8cm]{geometry}         %!  фиксирует оступ на 2cm
+\usepackage{xcolor}
+\usepackage{hyperref} 
+\definecolor{grey}{HTML}{666666}
+\definecolor{linkcolor}{HTML}{0000CC}
+\definecolor{urlcolor}{HTML}{006600}
+\hypersetup{
+    pdfstartview=FitH,  
+    linkcolor=linkcolor,
+    urlcolor=urlcolor, 
+    colorlinks=true,
+    citecolor=blue,
+    unicode=true}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{graphicx}%для пикч
+\usepackage{pgfplots}%для графиков
+\pgfplotsset{compat=1.9}%тоже
+\usepackage{amsfonts} %ШРИФТ ДЛЯ R
+\usepackage{float} %размещение пикч
+\usepackage{amsmath} %для aligned тип чтобы равно было посередине
+\usepackage{wrapfig}
+\usepackage{mathtext}
+\usepackage{gensymb}
+\usepackage{enumitem}
+\usepackage{tabto}
+\usepackage{tcolorbox}
+\usepackage{subcaption}
+
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+\newcommand*\bigcdot{\mathpalette\bigcdot@{.5}}
+
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+extendedchars=\true,
+  language=sql,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
