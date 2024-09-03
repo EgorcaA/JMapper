@@ -166,7 +166,7 @@ class Exchanges2():
         dd.set_ylabel('J(q) (eV)')  # Add an x-label to the axes.
         dd.set_xlabel('q')  # Add a y-label to the axes.
         dd.set_title(rf'J(q) $\beta$={self.beta:.0f}')
-        # dd.legend(prop={'size': 9}, frameon=False, loc='upper right', bbox_to_anchor=(0.9, 0.99))  # Add a legend.
+        dd.legend(prop={'size': 9}, frameon=False, loc='upper right', bbox_to_anchor=(0.9, 0.99))  # Add a legend.
         # locator = AutoMinorLocator()
         # dd.yaxis.set_minor_locator(MultipleLocator(0.05))
 
@@ -245,7 +245,7 @@ def plotJ_Real(Js_neib00, Js_neib01, sorted_vert_J, J_path_plt):
 
     dd.set_ylabel('E (meV)')  # Add an x-label to the axes.
     dd.set_xlabel('Neighbour order')  # Add a y-label to the axes.
-    # dd.legend(prop={'size': 9}, frameon=False)  # Add a legend.
+    dd.legend(prop={'size': 9}, frameon=False)  # Add a legend.
 
     dd.xaxis.set_major_locator(MultipleLocator(1))
     dd.yaxis.set_minor_locator(MultipleLocator(0.5))
