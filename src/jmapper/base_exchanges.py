@@ -35,17 +35,6 @@ class Exchanges(ABC):
         self.Giws_dn_flt = np.transpose(Giws_dnBlock, (0, 1, 3, 4, 5, 2)).reshape(self.num_sites, self.num_sites, -1, self.nkpt)
         print(self.Giws_up_flt.shape)
 
-    # @property
-    # @abstractmethod
-    # def kMesh_int(self):
-    #     """Subclasses must define this variable"""
-    #     pass
-
-    # @property
-    # @abstractmethod
-    # def kMesh_frac(self):
-    #     """Subclasses must define this variable"""
-    #     pass
 
     def calc_J(self, vec, i, j, verb=True):
         
@@ -53,7 +42,7 @@ class Exchanges(ABC):
 
         G_w_flt_up =  self.dSarea*np.sum( np.exp(-2*np.pi*1.j* np.dot(self.kMesh_frac, vec ) )*self.Giws_up_flt[i, j], axis=1 )  
         G_w_flt_dn =  self.dSarea*np.sum( np.exp(+2*np.pi*1.j* np.dot(self.kMesh_frac, vec ) )*self.Giws_dn_flt[j, i], axis=1 )  
-        # print("hellp")
+        
         J = -1.0/self.beta*0.25*(
             np.sum(np.trace(self.DeltaBlock[i, i]@(G_w_flt_up.reshape(self.n_iw, dnwa , dnwa))@\
                             self.DeltaBlock[j ,j]@(G_w_flt_dn.reshape(self.n_iw, dnwa , dnwa)), axis1=1, axis2=2)
@@ -98,15 +87,7 @@ class Exchanges(ABC):
         if Jqs_dense is None:
             # making dense J(q) mesh
             Jqs_dense = self.getJqpath(self, i, j, self.kMesh_int)
-            
-            # Jqs = []
-            # for q in tqdm(self.kMesh_int):
-            #     val = 0
-            #     for kpt in range(self.nkpt):
-            #         val = val - 1.0/self.beta*0.25*self.dSarea*np.sum(np.trace(self.DeltaBlock[i, i]@self.Giws_dnBlock[i, j, self.get_kqpt(kpt, q) ]\
-            #                                                             @self.DeltaBlock[j, j]@self.Giws_upBlock[j, i, kpt], axis1=1, axis2=2), axis=0)
-            #     Jqs.append(val)*2./(self.S**2)
-            # Jqs = np.array(Jqs)
+
             if  i == j : assert np.abs(np.sum(Jqs_dense - self.Jself[i])*self.dSarea) < 1e-9, 'smth goes wrong'
         
 

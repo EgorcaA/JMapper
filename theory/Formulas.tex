@@ -5,7 +5,7 @@
 
 
 \begin{center}
-    \LARGE \textsc{formulas}
+    \LARGE \textsc{Theory}
 \end{center}
 
 \hrule
@@ -25,8 +25,21 @@
 
 \thispagestyle{empty}
 
+\section{Heisenberg model}
+Heisenberg model reads here
+\[
+    \hat{H}=-\sum_{i \neq j} J_{i j} \vec{e}_i \cdot \vec{e}_j
+\]
+so positive exchanges mean FM state. 
+In this convention (omiting details in expression on the right)
+$$
+(-1)^P J_{i j} \propto - \sum_{i \nu_n} \operatorname{Tr}\left[ \Delta_i G_{i j}\left(i \nu_n\right) \Delta_j G_{j i}\left(i \nu_n\right) \right],
+$$
+where $\nu_n$ denotes the Matsubara frequency. 
+Here we set $P=0$ (1) when the spins at $i$ and $j$ sites are aligned parallel (antiparallel) to each other depending on the state in which $\Delta$ was calculated. 
+Practically depending on the configuration in DFT.
 
-\section{Theory}
+\section{All in all}
 The exchange interactions in DFT were estimated by magnetic force theorem (MFT)  approach \cite{korotin_calculation_2015,liechtenstein_local_1987} using electron Green's functions, 
 calculated in Wannier basis 
 %consisting of d states of Cr and p states of Te 
@@ -75,7 +88,7 @@ with $G_{\text{loc}, \sigma} = \frac{1}{V_{BZ}} \int_{B Z} G_{i i, \sigma }^{m m
 % where $G_{i j, \sigma}(i \nu_n, \mathbf{R}_{l})$ is Fourier image from $G_{i j, \sigma}^{m m^{\prime}}(i \nu_n, \mathbf{k})$. 
 
 
-\subsection{1 atom per cell} % (fold)
+\section{Single atom per cell} % (fold)
 \label{sub:1}
 In case of one magnetic atom in unit cell we calculate 
 $    G_{0 j, \sigma}^{m m^{\prime}}(i \nu_n)= \frac{1}{V_{BZ}} \int_{B Z} G_{\sigma}^{m m^{\prime}}(i \nu_n, \mathbf{k}) e^{2 \pi i \mathbf{k} \mathbf{R}_{j}} d \mathbf{k}$ 
@@ -123,33 +136,41 @@ Magnon dispersion in Heisenberg model
 
 
 
-\subsection{2 atoms per cell} % (fold)
+\section{Several types of atoms per cell} % (fold)
 \label{sub:1}
 In case of 2 (magnetic) atoms in unit cell we add indices $ i, j$ that number these atoms
 \[
     G_{i j, \sigma}^{m m^{\prime}}(i \nu_n, \mathbf{k})=\left(i \nu_n + E_F-H_{m m^{\prime}, i j, \sigma}^{W F}(\mathbf{k})\right)^{-1}
 \]
-\begin{align*}
-    G_{0 0, \sigma}^{m m^{\prime}}(i \nu_n, \mathbf{R}_{l}) &= \frac{1}{V_{BZ}} \int_{B Z} G_{\sigma 0 0}^{m m^{\prime}}(i \nu_n, \mathbf{k}) e^{2 \pi i \mathbf{k} \mathbf{R}_{l}} d \mathbf{k}\\
-    G_{0 1, \sigma}^{m m^{\prime}}(i \nu_n, \mathbf{R}_{l}) &= \frac{1}{V_{BZ}} \int_{B Z} G_{\sigma 0 1}^{m m^{\prime}}(i \nu_n, \mathbf{k}) e^{2 \pi i \mathbf{k} \mathbf{R}_{l}} d \mathbf{k} 
-\end{align*}
-where $\mathbf{R}_{l}$ is translation vector (in our case both atoms are in G so $\mathbf{R}_{l}$ is integer vector)
+here matrix is inverted in full basis. Then intersite Green's function is
+$$
+G_{i^{\prime} j^{\prime}, \sigma}^{m m^{\prime}}(i \nu_n) = \frac{1}{V_{BZ}} \int_{B Z} G_{i j, \sigma}^{m m^{\prime}}(i \nu_n, \mathbf{k}) e^{2 \pi i \mathbf{k} \left(\left(\mathbf{R}_{i^{\prime}}-\mathbf{R}_i^0\right)-\left(\mathbf{R}_{j^{\prime}}-\mathbf{R}_j^0\right)\right)} d \mathbf{k}\\
+$$
+where $G_{i j, \sigma}^{m m^{\prime}}(i \nu_n, \mathbf{k})$ is the inter-site Green's function of the primitive cell for given $\mathbf{k}$ point, 
+$\mathbf{R}_{\mathbf{i}^{\prime}}$ - is the position of atom $i^{\prime}$ in the lattice, and $\mathbf{R}_{\mathbf{i}}^{\mathbf{0}}$ is the position of the same atom within the primitive cell.
+This means integer vectors (in crystal coordinates) in the exponent for interatomic exchanges. $\mathbf{k}$-vectors should be in fractional coordinates here. 
+
+$\Delta$ matrix is also block-diagonal and we need only blocks on its diagonal.
 \begin{equation}
     \Delta_{i i}^{m m^{\prime}} = \frac{1}{V_{BZ}} \int_{B Z}\left(H_{ \uparrow i i}^{m m^{\prime}}(\mathbf{k})-H_{ \downarrow i i}^{m m^{\prime}}(\mathbf{k})\right) d \mathbf{k} .
 \end{equation}
+Using this we ge
+\begin{equation}
+    J_{i j}  = -\frac{2 T}{{\mathfrak m} {\mathfrak m}}  \sum_{i \nu_n} \operatorname{Tr}
+    \left[\Delta_{ i i} G_{i j, \downarrow}(i \nu_n) \Delta_{j j} G_{j i, \uparrow}(i \nu_n) \right]
+\end{equation} where $J_{i j}$ is exchange between particular pair of atoms. 
+Normally it should be identical for all representatives of neighbours order.
 
+In momentum space between types of atoms i and j (not particular pairs of them) we get 
 \begin{equation}
-    J_{i j}(\mathbf{R}_{l})  = \frac{T}{4}  \sum_{i \nu_n} \operatorname{Tr}
-    \left[\Delta_{ i i} G_{i j, \downarrow}(i \nu_n, \mathbf{R}_{l}) \Delta_{j j} G_{j i, \uparrow}(i \nu_n, -\mathbf{R}_{l}) \right]
-\end{equation}
-\begin{equation}
-    J_{i j} (q) =  \frac{T}{4 V_{BZ}}  \sum_{i \nu_n}  \int_{1 BZ} \diff k \operatorname{Tr}
+    J_{i j} (q) = -\frac{2T}{{\mathfrak m} {\mathfrak m}}   \sum_{i \nu_n}  \int_{1 BZ} \diff k \operatorname{Tr}
     \left[\Delta_{ i i} G_{ i j, \downarrow}(i \nu_n, k+ q) \Delta_{j j} G_{j i, \uparrow}(i \nu_n, k) \right]
 \end{equation}
-from $J_{i j} (\mathbf{q})$ we can also get $J_{i j}(\mathbf{R}_{l})$ via 
+and from this $J_{i j} (\mathbf{q})$ we can also get $J_{i j}(\mathbf{R}_{l})$ where $\mathbf{R}_{l}$ is vector connecting particular pair of atoms, via 
 \begin{equation}
     J_{i j}(\mathbf{R}_{l}) = \frac{1}{V_{BZ}} \int_{B Z} J_{i j} (\mathbf{q}) e^{2 \pi i \mathbf{q} \mathbf{R}_{l}} d \mathbf{q}
 \end{equation}
+and vice versa.
 
 
 

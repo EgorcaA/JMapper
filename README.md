@@ -2,8 +2,8 @@
 ## About The Project
 
 This tool is designed to help calculate Heisenberg exchange parameters in Green's functions formalism and visualize the results.
-1ML notebook contains calculations of CrTe2 monolayer, 2ML - bilayer with 2 magnetic atoms in cell. 
-Use `exchange_GG_2atoms.py` file to adapt the program for complex hamiltonian structure.  
+
+Start with examples.
 
 <!-- USAGE -->
 ## USAGE
@@ -29,6 +29,6 @@ To get exchange parameters one should
 
 Egor Agapov -  agapov.em@phystech.edu
 
-Project Link: [https://github.com/EgorcaA/exchanges_DFT](https://github.com/EgorcaA/exchanges_DFT)
+Project Link: [https://github.com/EgorcaA/JMapper](https://github.com/EgorcaA/JMapper)
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

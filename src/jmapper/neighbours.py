@@ -33,11 +33,7 @@ class NeighboursFinder2D():
                     vert_J[dist]=[pair]
                 else:
                     vert_J[dist].append(pair)
-                # print(pair, dist)
-        sorted_vert_J = dict(list(sorted(vert_J.items()))[:num_orders]) #dict(sorted(vert_J.items()))
-        # for i, item in enumerate(sorted_vert_J.items()):
-        #     print(item[1])
-        #     if i > 5: break
+        sorted_vert_J = dict(list(sorted(vert_J.items()))[:num_orders])
 
         return sorted_vert_J
     
