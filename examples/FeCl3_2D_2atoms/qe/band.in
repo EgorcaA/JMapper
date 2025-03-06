@@ -1,0 +1,44 @@
+ &control
+    calculation='bands'
+    pseudo_dir = '../',
+    outdir='./tmp'
+    prefix='FeCl3'
+	 verbosity='high'
+    disk_io='low'
+ /
+&system
+    ibrav = 4, nat= 8, ntyp= 3,
+    A=6.1, C=19.23313
+    ecutwfc =90.0, nspin = 2, nbnd= 50, ecutrho=800.0
+    occupations='smearing', smearing='cold', degauss=0.02
+    assume_isolated='2D',
+	 starting_magnetization(1)=1.0, 
+    starting_magnetization(2)=-1.0,
+    starting_magnetization(3)=1.0
+ /
+ &electrons
+    conv_thr = 1.0e-8
+ /
+ATOMIC_SPECIES
+ Fe1 55.8470 Fe.pbe-spn-kjpaw_psl.1.0.0.UPF
+ Fe2 55.8470 Fe.pbe-spn-kjpaw_psl.1.0.0.UPF
+ Cl 35.4527 Cl.pbe-n-kjpaw_psl.1.0.0.UPF
+ATOMIC_POSITIONS crystal
+Fe1   0.0000000000000000    0.0000000000000000    0.3333209999999998 
+Fe2   0.3333333333333333    0.6666666666666666    0.3333456666666668 
+Cl   0.6667313333333333    0.9597946666666671    0.2666026666666669 
+Cl   0.0402053333333329    0.7069366666666662    0.2666026666666669 
+Cl   0.2930633333333338    0.3332686666666667    0.2666026666666669 
+Cl   0.0402699999999996    0.3333979999999999    0.4000639999999998 
+Cl   0.2931280000000003    0.9597300000000004    0.4000639999999998 
+Cl   0.6666019999999999    0.7068719999999995    0.4000639999999998 
+K_POINTS crystal_b
+  4
+  0.0 0.0 0.0 10 ! G
+  0.0000000000    0.5000000000   0.0000000000 10 ! M
+  -0.3333333333   0.6666666667   0.0000000000 10 ! K 
+  0.0 0.0 0.0 10 ! G
+HUBBARD (ortho-atomic)
+U Fe1-3d 5.5
+U Fe2-3d 5.5
+
